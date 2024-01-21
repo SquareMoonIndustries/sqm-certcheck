@@ -4,7 +4,7 @@
 Simple service to check the expiration of a certificate for a domain.
 
 Call with
-```
+```bash
 curl -L "https://certcheck.sudde.eu/" \
 -H "Content-Type: application/json" \
 -d "{
@@ -23,7 +23,7 @@ curl -L "https://certcheck.sudde.eu/" \
 ```
 
 Get responce
-```
+```JSON
 {
     "urls": [
         {

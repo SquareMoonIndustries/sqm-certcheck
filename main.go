@@ -48,6 +48,36 @@ func main() {
 		log.Fatal(err)
 	}
 
+	//urlUatWeb := "https://brimuat.ajg.com/"
+	/*fmsUrls := []string{"https://brimuat.ajg.com/", "https://brim.ajg.com/", "https://fmsuat.ajg.com/", "https://fms.ajg.com"}
+	results := []struct {
+		Url    string
+		Expire time.Time
+		Error  error
+	}{}
+
+	for _, url := range fmsUrls {
+		t, err := checkUrl(url)
+		if err != nil {
+			fmt.Printf("url: %s,expire: %s,error: %s\n", url, t.String(), err.Error())
+		} else {
+			fmt.Printf("url: %s,expire: %s\n", url, t.String())
+		}
+		results = append(results, struct {
+			Url    string
+			Expire time.Time
+			Error  error
+		}{
+			Url:    url,
+			Expire: t,
+			Error:  err,
+		})
+	}
+
+	fmt.Printf("%v\n", results)
+
+	return*/
+
 	go func() {
 		for {
 			err := <-errs

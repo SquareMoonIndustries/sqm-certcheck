@@ -25,11 +25,7 @@ func handlerBrim(w http.ResponseWriter, r *http.Request) {
 
 	for _, url := range fmsUrls {
 		t, err := checkUrl(url)
-		/*if err != nil {
-			fmt.Printf("url: %s,expire: %s,error: %s\n", url, t.String(), err.Error())
-		} else {
-			fmt.Printf("url: %s,expire: %s\n", url, t.String())
-		}*/
+
 		results = append(results, struct {
 			Url    string
 			Expire time.Time

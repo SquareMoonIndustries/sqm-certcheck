@@ -28,7 +28,11 @@ func handlerCertCheck(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Not valid input data", http.StatusInternalServerError)
 	}
 	for i, v := range data.Urls {
-		v.Expire, v.Error = checkUrl(v.URL)
+		var err error
+		v.Expire, err = checkUrl(v.URL)
+		if err != nil {
+			v.Error = err.Error()
+		}
 		data.Urls[i] = v
 	}
 
@@ -40,15 +44,15 @@ func handlerCertCheck(w http.ResponseWriter, r *http.Request) {
 	enc.Encode(data)
 }
 
-func checkUrl(url string) (time.Time, string) {
+func checkUrl(url string) (time.Time, error) {
 	resp, err := http.Get(url)
 	if err != nil {
-		return time.Time{}, err.Error()
+		return time.Time{}, err
 	}
 	defer resp.Body.Close()
 	cert, err := x509.ParseCertificate(resp.TLS.PeerCertificates[0].Raw)
 	if err != nil {
-		return time.Time{}, err.Error()
+		return time.Time{}, err
 	}
-	return cert.NotAfter, ""
+	return cert.NotAfter, nil
 }

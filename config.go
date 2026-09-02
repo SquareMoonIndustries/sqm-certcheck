@@ -9,8 +9,9 @@ import (
 )
 
 type appSettings struct {
-	Debug bool   `json:"debug"`
-	Port  string `json:"port"`
+	Debug bool     `json:"debug"`
+	Port  string   `json:"port"`
+	Urls  []string `json:"urls"`
 }
 
 const filenameSettings = "settings.json"

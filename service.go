@@ -16,9 +16,9 @@ type program struct {
 
 func (p *program) Start(s service.Service) error {
 	if service.Interactive() {
-		logger.Info("Running in terminal.")
+		logger.Info("Running in terminal. on port " + settings.Port)
 	} else {
-		logger.Info("Running under service manager.")
+		logger.Info("Running under service manager. on port " + settings.Port)
 	}
 	p.exit = make(chan struct{})
 
@@ -34,7 +34,9 @@ func (p *program) run() error {
 	srv := &http.Server{
 		Handler: router,
 		Addr:    settings.Port,
+		//Addr: ":8085",
 		// Good practice: enforce timeouts for servers you create!
+		// TDOD: Add total timeout
 		WriteTimeout: 15 * time.Second,
 		ReadTimeout:  15 * time.Second,
 	}

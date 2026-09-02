@@ -11,12 +11,13 @@ func init() {
 }
 
 func handlerBrim(w http.ResponseWriter, r *http.Request) {
-	fmsUrls := []string{
-		"https://brimuat.ajg.com/",
-		"https://brim.ajg.com/",
+	/*fmsUrls := []string{
+		//"https://brimuat.ajg.com/",
+		//"https://brim.ajg.com/",
 		"https://fmsuat.ajg.com/",
 		"https://fms.ajg.com",
-	}
+	}*/
+	fmsUrls := settings.Urls
 	results := []struct {
 		Url    string
 		Expire time.Time
@@ -25,6 +26,11 @@ func handlerBrim(w http.ResponseWriter, r *http.Request) {
 
 	for _, url := range fmsUrls {
 		t, err := checkUrl(url)
+		if err != nil {
+			println("url: " + url + ",error: " + err.Error())
+		} else {
+			println("url: " + url + ",expire: " + t.String())
+		}
 
 		results = append(results, struct {
 			Url    string

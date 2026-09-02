@@ -11,7 +11,7 @@ import (
 )
 
 const (
-	appVersionStr = "v0.2.brim"
+	appVersionStr = "v0.6.brim"
 	nameOfService = "sqm-certcheck"
 )
 
@@ -48,6 +48,7 @@ func main() {
 		log.Fatal(err)
 	}
 
+	fmt.Println("urls: ", settings.Urls)
 	go func() {
 		for {
 			err := <-errs

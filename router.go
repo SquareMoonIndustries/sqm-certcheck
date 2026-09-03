@@ -38,7 +38,7 @@ func wwwLogger(inner http.Handler, name string) http.Handler {
 		if settings.Debug {
 			logger.Info(name + " " + r.RequestURI + " " + r.RemoteAddr + " " + r.Method)
 		}
-		w.Header().Set("X-Version", appVersionStr)
+		w.Header().Set("X-Version", Version)
 		inner.ServeHTTP(w, r)
 	})
 }

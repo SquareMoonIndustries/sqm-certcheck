@@ -11,9 +11,10 @@ import (
 )
 
 const (
-	appVersionStr = "v0.6.brim"
 	nameOfService = "sqm-certcheck"
 )
+
+var Version string = "dev"
 
 var (
 	routes = Routes{
@@ -73,5 +74,5 @@ func main() {
 }
 
 func defaultHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprint(w, "<html><body>We are up and running "+nameOfService+" version "+appVersionStr+" ;)</body></html>")
+	fmt.Fprint(w, "<html><body>We are up and running "+nameOfService+" version "+Version+" ;)</body></html>")
 }
